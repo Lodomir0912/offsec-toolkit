@@ -29,15 +29,15 @@ gunzip /opt/pivot/chisel_1.12.0_linux_amd64.gz
 # Install bloodhound-cli
 git clone https://github.com/SpecterOps/bloodhound-cli.git /opt/
 
-if [ ! -x $(which go) ]; do
+if [ ! -x $(which go) ]; then
 	apt install -y go
 fi
 
-if [ ! -x $(which docker) ]; do
+if [ ! -x $(which docker) ]; then
 	apt install -y docker.io
 fi
 
-if [ ! -x $(which docker-compose) ]; do
+if [ ! -x $(which docker-compose) ]; then
 	apt install -y docker-compose
 fi
 
