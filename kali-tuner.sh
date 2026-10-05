@@ -42,7 +42,9 @@ if [ ! -x $(which docker-compose) ]; then
 	apt install -y docker-compose
 fi
 
-go build -ldflags="-s -w -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.Version=`git describe --tags --abbrev=0`' -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.BuildDate=`date -u '+%d %b %Y'`'" -o /opt/bloodhound-cli /opt/bloodhound-cli/main.go
+cd /opt/bloodhound-cli
+go build -ldflags="-s -w -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.Version=`git describe --tags --abbrev=0`' -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.BuildDate=`date -u '+%d %b %Y'`'" -o bloodhound-cli main.go
+cd
 
 cp /opt/bloodhound-cli/bloodhound-cli /usr/bin/.
 
