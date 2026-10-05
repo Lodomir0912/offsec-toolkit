@@ -27,7 +27,8 @@ wget https://github.com/jpillora/chisel/releases/download/v1.12.0/chisel_1.12.0_
 gunzip /opt/pivot/chisel_1.12.0_linux_amd64.gz
 
 # Install bloodhound-cli
-git clone https://github.com/SpecterOps/bloodhound-cli.git /opt
+mkdir -p /opt/bloodhound-cli
+git clone https://github.com/SpecterOps/bloodhound-cli.git /opt/bloodhound-cli/.
 
 if [ ! -x $(which go) ]; then
 	apt install -y go
@@ -46,6 +47,7 @@ go build -ldflags="-s -w -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.Ver
 cp /opt/bloodhound-cli/bloodhound-cli /usr/bin/.
 
 # Install targeted kerberoast
-git clone https://github.com/ShutdownRepo/targetedKerberoast /opt
+mkdir -p /opt/targetedKerberoast
+git clone https://github.com/ShutdownRepo/targetedKerberoast /opt/targetedKerberoast/.
 
 cp /opt/targetedKerberoast/targetedKerberoast.py /usr/bin/.
