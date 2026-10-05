@@ -26,3 +26,26 @@ chmod u+x /usr/bin/nmap-full
 wget https://github.com/jpillora/chisel/releases/download/v1.12.0/chisel_1.12.0_linux_amd64.gz -O /opt/pivot/chisel_1.12.0_linux_amd64.gz
 gunzip /opt/pivot/chisel_1.12.0_linux_amd64.gz
 
+# Install bloodhound-cli
+git clone https://github.com/SpecterOps/bloodhound-cli.git /opt/
+
+if [ ! -x $(which go) ]; do
+	apt install -y go
+fi
+
+if [ ! -x $(which docker) ]; do
+	apt install -y docker.io
+fi
+
+if [ ! -x $(which docker-compose) ]; do
+	apt install -y docker-compose
+fi
+
+go build -ldflags="-s -w -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.Version=`git describe --tags --abbrev=0`' -X 'github.com/SpecterOps/BloodHound_CLI/cmd/config.BuildDate=`date -u '+%d %b %Y'`'" -o /opt/bloodhound-cli /opt/bloodhound-cli/main.go
+
+cp /opt/bloodhound-cli/bloodhound-cli /usr/bin/.
+
+# Install targeted kerberoast
+git clone https://github.com/ShutdownRepo/targetedKerberoast /opt/
+
+cp /opt/targetedKerberoast/targetedKerberoast.py /usr/bin/.
